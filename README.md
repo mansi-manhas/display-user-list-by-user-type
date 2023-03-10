@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+## Requirement
+Implement this [design](https://user-images.githubusercontent.com/18692751/224435857-080ea85b-87f6-43c7-bc60-b93d4140b4aa.png) and build a react app in TypeScript. The data will be fetcehd with the GraphQL API. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Demo Screenshots
 
-In the project directory, you can run:
+### Desktop
+![image](https://user-images.githubusercontent.com/18692751/224436049-b2b642cd-87a6-40a6-8535-390d9ce9f98a.png)
 
-### `npm start`
+### Responsive on Desktop
+![image](https://user-images.githubusercontent.com/18692751/224436102-f952f614-c9b9-4ef6-86e6-56f26f5c3860.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Mobile Friendly
+![image](https://user-images.githubusercontent.com/18692751/224436145-f107fb55-09c4-431c-bf33-0c3c5c5ca7df.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Overview of folder structure and coding approach
 
-### `npm test`
+- `api`: contains `queries.ts` and `aws-exports.js`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `components`: contains common reusable components being used in the UI, like `AvatarCard`, `RadioGroup`, `Text`, `Title`
 
-### `npm run build`
+- `ui`: contains the custom ui components as per the design
+     - `UserTypes.tsx`: first part of the UI
+     - `UserListByType.tsx`: second part of the UI
+     - `UserView.tsx`: `UserTypes.tsx` + `UserListByType.tsx`
+     
+- Each folder has below files:
+     - `styles.styled.ts`: contains `styled-components` 
+     - `types.ts`: contains typescript types and prop types
+     - `__tests__`: folder contains unit tests for each component
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- If the requirement was more complex, then we would be creating multiple sub-folders for each component, and each sub-folder would have above files
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `UserView` component is a wrapper component around `UserType` and `UserListByType`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Performance Optimization
 
-### `npm run eject`
+- Using `useMemo` hook that helps avoiding re-execution of same expensive function in any component. This memoize the values between renders.
+- Using `useCallback` hook that returns a memoized instance of the method that changes with the change of dependencies (i.e., instead of re-creating the instance of the function in every render, the same instance will be used)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Unit Tests coverage 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+All files            |   89.55 |    81.25 |    82.6 |    90.9 |
