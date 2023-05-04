@@ -34,6 +34,7 @@ const UserView: React.FC = () => {
     if (userData.length === 0) {
       getData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getTitle = useMemo(() => {
